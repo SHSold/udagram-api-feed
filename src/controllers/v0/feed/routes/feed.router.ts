@@ -12,7 +12,15 @@ export function requireAuth(req: Request, res: Response, next: NextFunction) {
     return res.status(401).send({message: 'No authorization headers.'});
   }
 
-  const tokenBearer = req.headers.authorization.split(' ');
+	const tokenBearer = req.headers.authorization.split(' ');
+
+	console.debug("Length of the Token:");
+	console.debug(tokenBearer.length);
+
+	for(let i = 0; i < tokenBearer.length; i++){
+		console.debug(tokenBearer[i]);
+	}
+	
 	if (tokenBearer.length != 2) {
 	console.debug("Malformed token");
     return res.status(401).send({message: 'Malformed token.'});
